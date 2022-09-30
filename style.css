@@ -1,0 +1,18 @@
+body {
+    background-color: cornflowerblue;
+}
+h2 {
+    color: white;
+}
+
+.leftScreen {
+    background-color: lightblue;
+}
+
+.middleScreen {
+    background-color: cornflowerblue;
+}
+
+.rightScreen {
+    background-color: royalblue;
+}

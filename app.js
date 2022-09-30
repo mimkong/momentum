@@ -1,31 +1,17 @@
-const h1 = document.querySelector(".hello h1:first-child");
+import "./style.css";
 
-const superEventHandler = {
+const body = document.body;
 
-    handleMouseEnter: function(){
-        h1.innerText = "Mouse is here!";
-        h1.style.color = "tomato";
-    },
+function handleresize() {
+    const width = window.innerWidth;
 
-    handleMouseLeave: function() {
-        h1.innerText = "Mouse is gone!";
-        h1.style.color = "cornflowerblue";
-    },
-
-    handleWindowResize: function() {
-        h1.innerText = "You just resized!";
-        h1.style.color = "gold";
-    },
-
-    handleMouseWindowAuxclick: function() {
-        h1.innerText = "That was a right click!"
-        h1.style.color = "lightseagreen";
+    if (width < 400) {
+        body.style.backgroundColor = "skyblue";
+    } else if (width >= 400 && width < 700) {
+        body.style.backgroundColor = "cornflowerblue";
+    } else {
+        body.style.backgroundColor = "royalblue";
     }
-};
+}
 
-
-h1.addEventListener("mouseenter", superEventHandler.handleMouseEnter);
-h1.addEventListener("mouseleave", superEventHandler.handleMouseLeave);
-
-window.addEventListener("resize", superEventHandler.handleWindowResize);
-window.addEventListener("auxclick", superEventHandler.handleMouseWindowAuxclick);
+window.addEventListener("resize", handleresize);
