@@ -1,17 +1,33 @@
-import "./style.css";
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
 
-const body = document.body;
+const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
 
-function handleresize() {
-    const width = window.innerWidth;
 
-    if (width < 400) {
-        body.style.backgroundColor = "skyblue";
-    } else if (width >= 400 && width < 700) {
-        body.style.backgroundColor = "cornflowerblue";
-    } else {
-        body.style.backgroundColor = "royalblue";
-    }
+function onLoginSubmit(event) {
+    event.preventDefault();
+    loginForm.classList.add(HIDDEN_CLASSNAME);
+    const username = loginInput.value;
+    //greeting.innerText =  "Hello " + username;
+    localStorage.setItem(USERNAME_KEY, username);
+    paintGreetings(username);
 }
 
-window.addEventListener("resize", handleresize);
+
+function paintGreetings(username){
+    greeting.innerText = `Hello ${username}`;
+    greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+if(savedUsername === null) {
+    // show the form
+    loginForm.classList.remove(HIDDEN_CLASSNAME);
+    loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+    // show the greetings
+    paintGreetings(savedUsername);
+}
