@@ -1,6 +1,7 @@
 const setNum = document.querySelector("#setnum");
 const ranNum = document.querySelector("#rannum");
 const greeting = document.querySelector("#greeting");
+const btn = document.querySelector("#play");
 
 const RANDOM_KEY = "num";
 
@@ -13,5 +14,6 @@ function numberSubmit(event) {
     greeting.innerText =  "You chose " + num , "the machine chose: " 
     greeting.innerText = "You ";
     localStorage.setItem(RANDOM_KEY, num);
-    greeting.classList.remove(HIDDEN_CLASSNAME);
 }
+
+btn.addEventListener("click", numberSubmit);
