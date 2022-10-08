@@ -3,11 +3,13 @@ const toDoInput = toDoForm.querySelector("input");
 // const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
+const TODOS_KEY ="todos";
+
 const toDos = [];
 
 function saveToDos(){
-    localStorage.setItem("todos", JSON.stringify(toDos));
-    //localStoarge는 오직 텍스트만 저장가능 배열x 그래서 배열을 stringify함
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
+    //localStoarge는 오직 텍스트만 저장가능 배열x 그래서 배열을 JSON.stringify함
 }
 
 function deleteTodo(event) {
@@ -38,3 +40,18 @@ function handleToDoSubmit(event) {
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
+
+//function sayHello(item){
+    //console.log("this is the turn of", item);
+//} [1]
+
+const savedToDos = localStorage.getItem(TODOS_KEY);
+console.log(savedToDos);
+if(savedToDos !== null){
+    const parsedToDos = JSON.parse(savedToDos);
+    // string으로 바꾼 배열을 실제 쓸 수 있는 배열로 바꾼다 JSON.parse
+    console.log(parsedToDos);
+    parsedToDos.forEach((item) => console.log("this is the turn of", item)); //[1]
+    //parsedToDos.forEach(sayHello); [1] [1]은 같은 말이다
+    // = sayHello("a") -> sayHello("b") -> ...
+}
