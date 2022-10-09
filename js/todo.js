@@ -15,6 +15,8 @@ function saveToDos(){
 function deleteTodo(event) {
     const li = event.target.parentElement;
     li.remove();
+    toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+    saveToDos();
 }
 
 function paintToDo(newTodo){
@@ -51,7 +53,6 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 //} [1]
 
 const savedToDos = localStorage.getItem(TODOS_KEY);
-console.log(savedToDos);
 if(savedToDos !== null){
     const parsedToDos = JSON.parse(savedToDos);
     // string으로 바꾼 배열을 실제 쓸 수 있는 배열로 바꾼다 JSON.parse
@@ -61,3 +62,4 @@ if(savedToDos !== null){
     //parsedToDos.forEach(sayHello); [1]
     // = sayHello("a") -> sayHello("b") -> ...
 }
+
