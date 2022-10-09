@@ -5,7 +5,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY ="todos";
 
-const toDos = [];
+let toDos = [];
 
 function saveToDos(){
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
@@ -50,8 +50,9 @@ console.log(savedToDos);
 if(savedToDos !== null){
     const parsedToDos = JSON.parse(savedToDos);
     // string으로 바꾼 배열을 실제 쓸 수 있는 배열로 바꾼다 JSON.parse
-    console.log(parsedToDos);
-    parsedToDos.forEach((item) => console.log("this is the turn of", item)); //[1]
-    //parsedToDos.forEach(sayHello); [1] [1]은 같은 말이다
+    toDos = parsedToDos; // 비어있는 toDos array에 parsedToDos를 넣어서 전에 있던 toDo들을 복원
+    parsedToDos.forEach(paintToDo);
+    //parsedToDos.forEach((item) => console.log("this is the turn of", item)); //[2]
+    //parsedToDos.forEach(sayHello); [1]
     // = sayHello("a") -> sayHello("b") -> ...
 }
