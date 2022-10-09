@@ -19,8 +19,9 @@ function deleteTodo(event) {
 
 function paintToDo(newTodo){
     const litag = document.createElement("li");
+    litag.id = newTodo.id
     const spantag = document.createElement("span");
-    spantag.innerText = newTodo;
+    spantag.innerText = newTodo.text;
     const buttontag = document.createElement("button");
 
     buttontag.innerText = "<3";
@@ -34,8 +35,12 @@ function handleToDoSubmit(event) {
     event.preventDefault();
     const newTodo = toDoInput.value; //input의 현재 value를 새로운 변수에 복사
     toDoInput.value = "";// 그 다음 우리가 무엇을 하든 newToDo 변수와는 아무 상관이 없다.
-    toDos.push(newTodo);
-    paintToDo(newTodo);
+    const newTodoObj = {
+        text:newTodo,
+        id: Date.now(),
+    }
+    toDos.push(newTodoObj);
+    paintToDo(newTodoObj);
     saveToDos();
 }
 
